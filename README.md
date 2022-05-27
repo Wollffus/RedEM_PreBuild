@@ -1,20 +1,25 @@
 # RedEM_PreBuild
-A pre-built RedM server using the RedEM:RP framework. This is a basic server build, with only public resources. 
-This is not a plug and play server download. You still will have to take a few steps in getting it set up to your preferences. 
 
-[Video Tutorial](https://youtu.be/1Y0SLUre8BQ)
+A pre-built RedM server using the RedEM:RP framework. This is a basic server build, with only public resources.
+This is not a plug and play server download. You still will have to take a few steps in getting it set up to your preferences.
+
+# Youtube tutorial
+
+[Video Tutorial](https://youtu.be/1Y0SLUre8BQ) Click here for a youtube tutorial, or paste the link in your browser
+
+# Lets get started
 
 You will need server artifacts. Head to the link below and download the latest recommended build.
 https://runtime.fivem.net/artifacts/fivem/build_server_windows/master/
 
-- To un zip your server artifacts, you will need a zip/rar reader, a user friendly one is (https://www.win-rar.com/download.html?&L=0)
+- To unzip your server artifacts, you will need a zip/rar reader, a user friendly one is (https://www.win-rar.com/download.html?&L=0)
 - Download the files from the RedEM_PreBuild Github
 - Un-Zip the RedEM_PreBuild folder
-- In your search bar, type "This PC" 
+- In your search bar, type "This PC"
 - Select the drive you want the server saved on (In the default preview we used the C: drive)
 - Take the un-zipped RedEM_PreBuild file and drag it to the drive you want to use
-- You should have already downloaded the latest recommended server build artifacts, if you have not, do so now. 
-- Un-zip the server artifacts folder and drag the server folder and drop it in your RedEM_PreBuild folder. 
+- You should have already downloaded the latest recommended server build artifacts, if you have not, do so now.
+- Un-zip the server artifacts folder and drag the server folder and drop it in your RedEM_PreBuild folder.
 - RedEM_PreBuild folder should now have TWO(2) folders inside it, the original server-data folder that came with the download
   and the server folder that you just added.
 - You will need cfx-server-data, go here and download it https://github.com/Wollffus/cfx-server-data
@@ -33,16 +38,16 @@ Open your ports
  - 7 Name it RedM or something you want and click finish
 
 Repeat steps 1-4 but now instead of doing TCP, click UDP
-repeate steps 5-7 
+repeat steps 5-7
 
-Next you will click on Outbound rules, than repeat steps 2-7 for both TCP and UDP just like you just did for the inbound rules. 
+Next you will click on Outbound rules, then repeat steps 2-7 for both TCP and UDP just like you just did for the inbound rules.
 
 *Note* You may need to open ports 3306 as well, for your Xammp
 
-You will also need a database set up, here is a common user friendly one. 
+You will also need a database set up, here is a common user friendly one.
 - https://www.heidisql.com/
 
-You will need a form of Apache distribution, here is a common user friendly one. 
+You will need a form of Apache distribution, here is a common user friendly one.
 - https://www.apachefriends.org/download.html
 
 
