@@ -20,13 +20,7 @@ https://runtime.fivem.net/artifacts/fivem/build_server_windows/master/
 - open RedEM_PreBuild > server-data > resources
 - Drag [gamemodes], [gameplay], [local], [managers], [system], and [test] from the cfx-server-data folder and add them to RedEM_PreBuild > server-data > resources
 
-You will also need a database set up, here is a common user friendly one. 
-- https://www.heidisql.com/
-
-You will need a form of Apache distribution, here is a common user friendly one. 
-- https://www.apachefriends.org/download.html
-
-Finally, open your ports
+Open your ports
  - Go to your PC search bar again, and type "Windows Defender Firewall with Advanced Security"
  - 1 Click on inbound rules
  - 2 Click New Rule
@@ -42,6 +36,13 @@ repeate steps 5-7
 Next you will click on Outbound rules, than repeat steps 2-7 for both TCP and UDP just like you just did for the inbound rules. 
 
 *Note* You may need to open ports 3306 as well, for your Xammp
+
+You will also need a database set up, here is a common user friendly one. 
+- https://www.heidisql.com/
+
+You will need a form of Apache distribution, here is a common user friendly one. 
+- https://www.apachefriends.org/download.html
+
 
 # Credits
 
