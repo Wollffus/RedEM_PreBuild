@@ -14,7 +14,7 @@ https://runtime.fivem.net/artifacts/fivem/build_server_windows/master/
 - Un-zip the server artifacts folder and drag the server folder and drop it in your RedEM_PreBuild folder. 
 - RedEM_PreBuild folder should now have TWO(2) folders inside it, the original server-data folder that came with the download
   and the server folder that you just added.
-- You will need cfx-server-data, go here and download it [Standard Server Data](https://github.com/Wollffus/cfx-server-data)
+- You will need cfx-server-data, go here and download it https://github.com/Wollffus/cfx-server-data
 - Un-zip the cfx-server-data folder
 - open RedEM_PreBuild > server-data > resources
 - Drag [gamemodes], [gameplay], [local], [managers], [system], and [test] from the cfx-server-data folder and add them to RedEM_PreBuild > server-data > resources
@@ -24,3 +24,9 @@ You will also need a database set up, here is a common user friendly one.
 
 You will need a form of Apache distribution, here is a common user friendly one. 
 - https://www.apachefriends.org/download.html
+
+
+
+# Credits
+
+[RedEM:RP Framework](https://github.com/RedEM-RP)
