@@ -5,6 +5,7 @@ This is not a plug and play server download. You still will have to take a few s
 You will need server artifacts. Head to the link below and download the latest recommended build.
 https://runtime.fivem.net/artifacts/fivem/build_server_windows/master/
 
+- To un zip your server artifacts, you will need a zip/rar reader, a user friendly one is (https://www.win-rar.com/download.html?&L=0)
 - Download the files from the RedEM_PreBuild Github
 - Un-Zip the RedEM_PreBuild folder
 - In your search bar, type "This PC" 
@@ -25,6 +26,20 @@ You will also need a database set up, here is a common user friendly one.
 You will need a form of Apache distribution, here is a common user friendly one. 
 - https://www.apachefriends.org/download.html
 
+Finally, open your ports
+ - Go to your PC search bar again, and type "Windows Defender Firewall with Advanced Security"
+ - 1 Click on inbound rules
+ - 2 Click New Rule
+ - 3 Click Port, than click next
+ - 4 Click TCP, than click specific local ports and type 30120 (or 30110 if your using that port), click next
+ - 5 Make sure you click Allow the Connection, and click next
+ - 6 Make sure Domain, Private and Public are all checked off, click next
+ - 7 Name it RedM or something you want and click finish
+
+Repeat steps 1-4 but now instead of doing TCP, click UDP
+repeate steps 5-7 
+
+Next you will click on Outbound rules, than repeat steps 2-7 for both TCP and UDP just like you just did for the inbound rules. 
 
 
 # Credits
