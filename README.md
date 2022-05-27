@@ -41,6 +41,7 @@ repeate steps 5-7
 
 Next you will click on Outbound rules, than repeat steps 2-7 for both TCP and UDP just like you just did for the inbound rules. 
 
+*Note* You may need to open ports 3306 as well, for your Xammp
 
 # Credits
 
