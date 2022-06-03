@@ -71,3 +71,4 @@ You will need a form of Apache distribution, here is a common user friendly one.
 - [RedEM Progress Bars](https://github.com/RedEM-RP/redemrp_progressbars)
 - [RedEM Banking](https://github.com/Ktos93/redemrp_banking)
 - [Poke Miner Job](https://github.com/PokeSer/poke_minerjob)
+- [Police Job](https://github.com/mrlupo/ml_policejob)
