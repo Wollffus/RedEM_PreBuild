@@ -14,6 +14,25 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Dumping structure for table redemrp.characters
+CREATE TABLE IF NOT EXISTS `characters` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `identifier` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
+  `characterid` int(11) DEFAULT 0,
+  `money` int(11) DEFAULT 0,
+  `bank` int(11) NOT NULL DEFAULT 0,
+  `gold` int(11) DEFAULT 0,
+  `xp` int(11) DEFAULT 0,
+  `level` int(11) DEFAULT 0,
+  `job` varchar(50) COLLATE utf8mb4_bin DEFAULT 'unemployed',
+  `firstname` varchar(50) COLLATE utf8mb4_bin DEFAULT 'first',
+  `lastname` varchar(50) COLLATE utf8mb4_bin DEFAULT 'last',
+  `jobgrade` int(11) DEFAULT 0,
+  `coords` varchar(255) COLLATE utf8mb4_bin DEFAULT '{"z":113.96495819092,"x":-250.76983642578,"y":716.5693359375}',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- Data exporting was unselected.
 
 -- Dumping database structure for redemrp
 CREATE DATABASE IF NOT EXISTS `redemrp` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
@@ -88,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `user_locker` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- Data exporting was unselected.
+
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
