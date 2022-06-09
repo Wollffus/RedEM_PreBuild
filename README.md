@@ -50,6 +50,10 @@ You will also need a database set up, here is a common user friendly one.
 You will need a form of Apache distribution, here is a common user friendly one.
 - https://www.apachefriends.org/download.html
 
+# Want to use TX Admin?
+open the Start.bat provided and remove +exec server.cfg than start the .bat 
+It will run TX admin. If your server console spams game not supported {gta-v} all you need to do is in your TX web panel, go to 
+settings and find "Additional Peramiters" than add +set gamename rdr3 and click save
 
 # Credits
 
