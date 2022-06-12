@@ -77,3 +77,4 @@ settings and find "Additional Peramiters" than add +set gamename rdr3 and click 
 - [Poke Miner Job](https://github.com/PokeSer/poke_minerjob)
 - [Police Job](https://github.com/mrlupo/ml_policejob)
 - [Hunting](https://github.com/JuanDeag-dev/juan_hunting)
+- [Horse Dealer](https://github.com/mrlupo/elrp_horsedealer)
