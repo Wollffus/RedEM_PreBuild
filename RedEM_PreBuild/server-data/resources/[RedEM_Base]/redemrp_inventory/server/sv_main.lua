@@ -641,9 +641,6 @@ function removeItemLocker ( name, amount,meta, lockerId)
     return output
 end
 
-
-
-
 RegisterServerEvent("redemrp_inventory:GetLocker")
 AddEventHandler("redemrp_inventory:GetLocker", function(id)
     local _source = source
@@ -652,16 +649,70 @@ AddEventHandler("redemrp_inventory:GetLocker", function(id)
         local charid = user.getSessionVar("charid")
         local job = user.getJob()
         if id == "private" then
-		if CreatedLockers[id] ~= nil then
-            if CreatedLockers[id].requireJob == job or CreatedLockers[id].requireJob == nil then
-                TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  PrepareToOutput(Locker[identifier .. "_" .. charid]) , InventoryWeight[identifier .. "_" .. charid], true)
-            end
-		else
-		                TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  PrepareToOutput(Locker[identifier .. "_" .. charid]) , InventoryWeight[identifier .. "_" .. charid], true)
-		end
+			if CreatedLockers[id] ~= nil then
+				if CreatedLockers[id].requireJob == job or CreatedLockers[id].requireJob == nil then
+					TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  PrepareToOutput(Locker[identifier .. "_" .. charid]) , InventoryWeight[identifier .. "_" .. charid], true)
+				end
+			else
+							TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  PrepareToOutput(Locker[identifier .. "_" .. charid]) , InventoryWeight[identifier .. "_" .. charid], true)
+			end
         else
             if CreatedLockers[id].requireJob == job or CreatedLockers[id].requireJob == nil  then
                 TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  PrepareToOutput(Locker[id]) , InventoryWeight[identifier .. "_" .. charid] , true)
+            end
+        end
+    end)
+end)
+
+RegisterServerEvent("redemrp_inventory:GetLockerHouse")
+AddEventHandler("redemrp_inventory:GetLockerHouse", function(id)
+    local _source = source
+    TriggerEvent('redemrp:getPlayerFromId', _source, function(user)
+        local identifier = user.getIdentifier()
+        local charid = user.getSessionVar("charid")
+		
+		TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  PrepareToOutput(Locker[id]) , InventoryWeight[identifier .. "_" .. charid] , true)
+    end)
+end)
+
+local Towns = {
+    "AnnesburgBank",
+    "ArmadilloBank",
+    "BlackwaterBank",
+    "RhodesBank",
+    "StDenisBank",
+    "StrawberryBank",
+    "TumbleweedBank",
+    "ValentineBank",
+    "VanhornBank",
+}
+
+RegisterServerEvent("redemrp_inventory:GetLockerBank")
+AddEventHandler("redemrp_inventory:GetLockerBank", function(id)
+    local _source = source
+    TriggerEvent('redemrp:getPlayerFromId', _source, function(user)
+        local identifier = user.getIdentifier()
+        local charid = user.getSessionVar("charid")
+        local finallocker = tostring(id.."_"..identifier.."_"..charid)
+        for k,v in pairs(Towns) do
+            if id == v then
+                if CreatedLockers[finallocker] == nil then
+                    CreatedLockers[finallocker] = { coords = {x = 0.0, y = 0.0, z = 0.0}, requireJob = nil }
+                    MySQL.Async.fetchAll('SELECT * FROM user_locker WHERE `identifier`=@identifier AND `charid`=@charid;', { identifier = finallocker, charid = 0 }, function(db_items)
+                        if db_items[1] ~= nil then
+                            local data = json.decode(db_items[1].items)
+                            Locker[finallocker] , _  = CreateInventory(data)
+                        else
+                            MySQL.Async.execute('INSERT INTO user_locker (`identifier`, `charid`, `items`) VALUES (@identifier, @charid, @items);', { identifier = finallocker, charid = 0, items = json.encode({}) }, function(rowsChanged)
+                                Locker[finallocker], _ , _ =  CreateInventory({})
+                            end)
+                        end
+                    end)
+                    TriggerClientEvent("redemrp_inventory:SendLockers", _source, CreatedLockers)
+                end
+                TriggerClientEvent("redemrp_inventory:SetLockerBank", _source, finallocker)
+                Wait(500)
+                TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  PrepareToOutput(Locker[finallocker]) , InventoryWeight[identifier .. "_" .. charid] , true)
             end
         end
     end)
@@ -1122,4 +1173,3 @@ AddEventHandler("redemrp_inventory:deleteInv", function(charid, Callback)
     MySQL.Async.fetchAll('DELETE FROM user_locker WHERE `identifier`=@identifier AND `charid`=@charid;', {identifier = id, charid = charid}, function(result)
         end)
 end)
-
