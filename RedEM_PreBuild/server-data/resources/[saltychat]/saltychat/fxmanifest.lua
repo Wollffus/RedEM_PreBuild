@@ -28,10 +28,10 @@ exports {
 }
 
 VoiceEnabled "true"
-ServerUniqueIdentifier "kn66bPkXxPGYYYf9/IMzhKWgxyE="
+ServerUniqueIdentifier "Change_Me"
 RequiredUpdateBranch ""
 MinimumPluginVersion "2.2.0"
 SoundPack "default"
-IngameChannelId "19772"
-IngameChannelPassword "SCRP2021"
+IngameChannelId "Change_Me"
+IngameChannelPassword "Change_Me" --Make sure your in game channel is password protected
 SwissChannelIds ""
