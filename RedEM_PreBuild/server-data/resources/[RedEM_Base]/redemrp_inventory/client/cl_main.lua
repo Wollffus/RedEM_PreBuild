@@ -367,11 +367,10 @@ AddEventHandler('redemrp_inventory:ReEnablePrompt', function()
     PromptActive = false
 end)
 
-
 RegisterNetEvent('redemrp_inventory:OpenPrivateLocker')
 AddEventHandler('redemrp_inventory:OpenPrivateLocker', function()
-		LockerZone = "private"
-     TriggerServerEvent("redemrp_inventory:GetLocker", LockerZone)
+    LockerZone = "private"
+    TriggerServerEvent("redemrp_inventory:GetLocker", LockerZone)
 end)
 
 RegisterNetEvent('redemrp_inventory:OpenLocker')
@@ -380,9 +379,22 @@ AddEventHandler('redemrp_inventory:OpenLocker', function(id)
     TriggerServerEvent("redemrp_inventory:GetLocker", LockerZone)
 end)
 
---==================== D R O P =======================================
+RegisterNetEvent('redemrp_inventory:OpenLockerHouse')
+AddEventHandler('redemrp_inventory:OpenLockerHouse', function(id)
+    LockerZone = id
+    TriggerServerEvent("redemrp_inventory:GetLockerHouse", LockerZone)
+end)
 
+RegisterNetEvent('redemrp_inventory:OpenLockerBank')
+AddEventHandler('redemrp_inventory:OpenLockerBank', function(id)
+    LockerZone = id
+    TriggerServerEvent("redemrp_inventory:GetLockerBank", LockerZone)
+end)
 
+RegisterNetEvent('redemrp_inventory:SetLockerBank')
+AddEventHandler('redemrp_inventory:SetLockerBank', function(id)
+    LockerZone = id
+end)
 
 RegisterNUICallback('useitem', function(data)
     TriggerServerEvent("redemrp_inventory:use",data.data)
@@ -392,8 +404,6 @@ RegisterNUICallback('craft', function(data)
     TriggerServerEvent("redemrp_inventory:craft",data , CurrentCraftingType)
 end)
 
-
-
 RegisterNetEvent('redemrp_inventory:SendLockers')
 AddEventHandler('redemrp_inventory:SendLockers', function(lock)
     CreatedLockers = lock
@@ -402,9 +412,9 @@ end)
 RegisterNetEvent('redemrp_inventory:SendCraftings')
 AddEventHandler('redemrp_inventory:SendCraftings', function(craft, job)
     CreatedCraftings = craft
-	if job ~= nil then
-		PlayerJob = job
-	end
+    if job ~= nil then
+        PlayerJob = job
+    end
 end)
 
 
