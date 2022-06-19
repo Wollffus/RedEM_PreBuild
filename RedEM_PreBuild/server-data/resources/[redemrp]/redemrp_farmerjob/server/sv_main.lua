@@ -1,0 +1,18 @@
+RegisterNetEvent("redemrp_farmerjob:setJob")
+AddEventHandler("redemrp_farmerjob:setJob", function(jobname)
+local _jobname = jobname
+TriggerEvent('redemrp:getPlayerFromId', source, function(user)
+user.setJob(_jobname)
+user.setJobgrade(1)
+end)
+end)
+
+RegisterNetEvent("redemrp_farmerjob:addMoney")
+AddEventHandler("redemrp_farmerjob:addMoney", function(payout, xp)
+local _payout = tonumber(payout)
+local _xp = tonumber(xp)
+TriggerEvent('redemrp:getPlayerFromId', source, function(user)
+user.addMoney(tonumber(_payout))
+user.addXP(tonumber(_xp))
+end)
+end)
