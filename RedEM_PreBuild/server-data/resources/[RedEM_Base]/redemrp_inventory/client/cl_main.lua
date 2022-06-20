@@ -28,7 +28,7 @@ Citizen.CreateThread(function()
     TriggerServerEvent("redemrp_inventory:playerJoined")
     while true do
         Wait(1)
-        if IsDisabledControlJustReleased(0, 0x4CC0E2FE) then
+        if IsControlJustReleased(0, 0xF3830D8E) then
             if LockerZone then
                 TriggerServerEvent("redemrp_inventory:GetLocker", LockerZone)
             else
@@ -192,12 +192,12 @@ end)
 
 RegisterNetEvent("redem:addMoney")
 AddEventHandler("redem:addMoney", function(_money)
-    PlayerMoney = tonumber(string.format("%.2f",tostring(_money)))
+    PlayerMoney = _money
 end)
 
 RegisterNetEvent("redem:activateMoney")
 AddEventHandler("redem:activateMoney", function(_money)
-    PlayerMoney = tonumber(string.format("%.2f",tostring(_money)))
+    PlayerMoney = _money
 end)
 
 RegisterNUICallback('additem', function(data)
@@ -209,9 +209,60 @@ RegisterNUICallback('removeitem', function(data)
 end)
 
 --==================== D R O P =======================================
+GetClosestPlayer = function(coords)
+    local players, closestDistance, closestPlayer = GetPlayers(), -1, -1
+    local coords, usePlayerPed = coords, false
+    local playerPed, playerId = PlayerPedId(), PlayerId()
+
+    if coords then
+        coords = vector3(coords.x, coords.y, coords.z)
+    else
+        usePlayerPed = true
+        coords = GetEntityCoords(playerPed)
+    end
+
+    for i=1, #players, 1 do
+        local target = GetPlayerPed(players[i])
+
+        if not usePlayerPed or (usePlayerPed and players[i] ~= playerId) then
+            local targetCoords = GetEntityCoords(target)
+            local distance = #(coords - targetCoords)
+
+            if closestDistance == -1 or closestDistance > distance then
+                closestPlayer = players[i]
+                closestDistance = distance
+            end
+        end
+    end
+
+    return closestPlayer, closestDistance
+end
+
+GetPlayers = function()
+    local players = {}
+  
+      for _,player in ipairs(GetActivePlayers()) do
+          local ped = GetPlayerPed(player)
+  
+          if DoesEntityExist(ped) then
+            table.insert(players, player)
+          end
+      end
+  
+      return players
+  end
 
 RegisterNUICallback('dropitem', function(data)
     TriggerServerEvent("redemrp_inventory:drop",data.data)
+end)
+
+RegisterNUICallback('giveitem', function(data)
+    local closestPlayer, closestDistance = GetClosestPlayer()
+    if closestPlayer ~= -1 and closestDistance <= 1.0 then
+        TriggerServerEvent('redemrp_inventory:give', data.data, GetPlayerServerId(closestPlayer))
+    else
+        TriggerEvent('redem_roleplay:Tip', "Person nearby", 4000)
+    end
 end)
 
 function modelrequest( model )
@@ -261,12 +312,10 @@ AddEventHandler('redemrp_inventory:removePickup', function(obj)
     while not NetworkHasControlOfEntity(obj) and timeout < 5000 do
         timeout = timeout+100
         if timeout == 5000 then
-            print('Never got control of' ..obj)
         end
         Wait(100)
     end
     if NetworkHasControlOfEntity(obj) then
-        print("yeah we have control")
     end
     FreezeEntityPosition(obj , false)
     DeleteEntity(obj)
@@ -292,7 +341,6 @@ AddEventHandler('redemrp_inventory:UpdatePickups', function(pick)
 end)
 
 local PickupPromptGroup = GetRandomIntInRange(0, 0xffffff)
-print('PickupPromptGroup: ' .. PickupPromptGroup)
 local PickupPrompt
 local PromptActive = false
 
@@ -367,10 +415,11 @@ AddEventHandler('redemrp_inventory:ReEnablePrompt', function()
     PromptActive = false
 end)
 
+
 RegisterNetEvent('redemrp_inventory:OpenPrivateLocker')
 AddEventHandler('redemrp_inventory:OpenPrivateLocker', function()
-    LockerZone = "private"
-    TriggerServerEvent("redemrp_inventory:GetLocker", LockerZone)
+		LockerZone = "private"
+     TriggerServerEvent("redemrp_inventory:GetLocker", LockerZone)
 end)
 
 RegisterNetEvent('redemrp_inventory:OpenLocker')
@@ -379,22 +428,9 @@ AddEventHandler('redemrp_inventory:OpenLocker', function(id)
     TriggerServerEvent("redemrp_inventory:GetLocker", LockerZone)
 end)
 
-RegisterNetEvent('redemrp_inventory:OpenLockerHouse')
-AddEventHandler('redemrp_inventory:OpenLockerHouse', function(id)
-    LockerZone = id
-    TriggerServerEvent("redemrp_inventory:GetLockerHouse", LockerZone)
-end)
+--==================== D R O P =======================================
 
-RegisterNetEvent('redemrp_inventory:OpenLockerBank')
-AddEventHandler('redemrp_inventory:OpenLockerBank', function(id)
-    LockerZone = id
-    TriggerServerEvent("redemrp_inventory:GetLockerBank", LockerZone)
-end)
 
-RegisterNetEvent('redemrp_inventory:SetLockerBank')
-AddEventHandler('redemrp_inventory:SetLockerBank', function(id)
-    LockerZone = id
-end)
 
 RegisterNUICallback('useitem', function(data)
     TriggerServerEvent("redemrp_inventory:use",data.data)
@@ -404,6 +440,8 @@ RegisterNUICallback('craft', function(data)
     TriggerServerEvent("redemrp_inventory:craft",data , CurrentCraftingType)
 end)
 
+
+
 RegisterNetEvent('redemrp_inventory:SendLockers')
 AddEventHandler('redemrp_inventory:SendLockers', function(lock)
     CreatedLockers = lock
@@ -412,9 +450,9 @@ end)
 RegisterNetEvent('redemrp_inventory:SendCraftings')
 AddEventHandler('redemrp_inventory:SendCraftings', function(craft, job)
     CreatedCraftings = craft
-    if job ~= nil then
-        PlayerJob = job
-    end
+	if job ~= nil then
+		PlayerJob = job
+	end
 end)
 
 
