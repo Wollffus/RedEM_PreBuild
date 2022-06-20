@@ -24,9 +24,13 @@ AddEventHandler("redemrp:playerLoaded", function(source, user)
                 Inventory[identifier .. "_" .. charid] , InventoryWeight[identifier .. "_" .. charid]  = CreateInventory(inv)
 
             else
+                user.addMoney(100)
                 local start_items = {
-                    ["water"] = {amount = 3, meta =  {}},
-                    ["bread"] = {amount = 3, meta = {}},
+                    ["water"] = {amount = 10, meta =  {}},
+                    ["bread"] = {amount = 10, meta = {}},
+                    ["AMMO_ARROW"] = {amount = 1, meta =  {}},
+                    ["WEAPON_BOW"] = {amount = 1, meta =  {}},
+                    ["WEAPON_MELEE_KNIFE"] = {amount = 1, meta = {}},
                 }
                 MySQL.Async.execute('INSERT INTO user_inventory (`identifier`, `charid`, `items`) VALUES (@identifier, @charid, @items);',
                     {
@@ -63,10 +67,6 @@ AddEventHandler("redemrp_inventory:update", function(_type ,data , target, Locke
     local _source = source
     local _target = target
     local itemData = Config.Items[data.name]
-    if not itemData then
-		print(data.name.. " this item not registered on config.lua")
-		return
-	end
     TriggerEvent('redemrp:getPlayerFromId', _source, function(user)
         local identifier = user.getIdentifier()
         local charid = user.getSessionVar("charid")
@@ -165,9 +165,9 @@ AddEventHandler("redemrp:playerDropped", function(_player)
         ['@items'] = JsonItemsInventory
     }, function (rowsChanged)
         if rowsChanged == 0 then
-            print(('user_inventory: Something went wrong saving %s!'):format(identifier .. ":" .. charid))
+
         else
-            print("saved")
+
         end
     end)
     MySQL.Async.execute('UPDATE user_locker SET items = @items WHERE identifier = @identifier AND charid = @charid', {
@@ -176,9 +176,9 @@ AddEventHandler("redemrp:playerDropped", function(_player)
         ['@items'] = JsonItemsLocker
     }, function (rowsChanged)
         if rowsChanged == 0 then
-            print(('user_inventory: Something went wrong saving locker %s!'):format(identifier .. ":" .. charid))
+
         else
-            print("saved locker")
+
         end
     end)
         Inventory[identifier .. "_" .. charid] = nil
@@ -190,7 +190,7 @@ AddEventHandler('txAdmin:events:scheduledRestart', function(eventData)
     if eventData.secondsRemaining == 60 then
         CreateThread(function()
             Wait(45000)
-            print("15 seconds before restart... saving all players!")
+
 			for j, l in pairs(Locker) do
 				local player_locker = l
 				local identifier = j:sub(1, -3)
@@ -248,7 +248,7 @@ end)
                     ['@items'] = JsonItemsInventory
                 }, function (rowsChanged)
                     if rowsChanged == 0 then
-                        print(('user_inventory: Something went wrong saving %s!'):format(identifier .. ":" .. charid))
+
                     else
                     end
                 end)
@@ -277,14 +277,13 @@ end)
                     ['@items'] = JsonItemsLocker
                 }, function (rowsChanged)
                     if rowsChanged == 0 then
-                        print(('user_inventory: Something went wrong saving locker %s!'):format(identifier .. ":" .. charid))
+
                     else
-                        print("saved locker")
+
                     end
                 end)
             end
-            print("Zapisano łącznie: "..saved.." inventory")
-			print("Zapisano łącznie: "..saved_locker.." schowkow")
+
 
             savePlayerInventory()
         end)
@@ -301,11 +300,7 @@ savePlayerInventory()
 RegisterServerEvent("redemrp_inventory:drop")
 AddEventHandler("redemrp_inventory:drop", function(data)
     local _source = source
-    local itemData = Config.Items[data.name]    
-    if not itemData then
-		print(data.name.. " this item not registered on config.lua")
-		return
-	end
+    local itemData = Config.Items[data.name]
     if itemData.canBeDropped then
         TriggerEvent('redemrp:getPlayerFromId', _source, function(user)
             local identifier = user.getIdentifier()
@@ -320,6 +315,33 @@ AddEventHandler("redemrp_inventory:drop", function(data)
     end
 end)
 
+
+RegisterServerEvent("redemrp_inventory:give")
+AddEventHandler("redemrp_inventory:give", function(data, closestPlayer)
+    local _source = source
+    local itemData = Config.Items[data.name]
+    local _target = closestPlayer
+ 
+    if _target ~= 0 and _target ~= nil then
+        if itemData.canBeDropped then
+            TriggerEvent('redemrp:getPlayerFromId', _source, function(user)
+                local identifier = user.getIdentifier()
+                local charid = user.getSessionVar("charid")
+
+                removeItem(data.name, data.amount, data.meta, identifier , charid)
+                TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  {}, InventoryWeight[identifier .. "_" .. charid])
+                TriggerEvent('redemrp:getPlayerFromId', _target, function(user2)
+                    local identifier_target = user2.getIdentifier()
+                    local charid_target = user2.getSessionVar("charid")
+                    local lvl_target = user2.getLevel()
+         
+                    addItem(data.name ,data.amount, data.meta, identifier_target, charid_target, lvl_target)
+                    TriggerClientEvent("redemrp_inventory:SendItems", _target, PrepareToOutput(Inventory[identifier_target .. "_" .. charid_target]) ,  {}, InventoryWeight[identifier_target .. "_" .. charid_target])
+                end)
+            end)
+        end
+    end
+end)
 
 RegisterServerEvent("redemrp_inventory:AddPickupServer")
 AddEventHandler("redemrp_inventory:AddPickupServer", function(name, amount, meta, label, img, x, y, z , id)
@@ -357,7 +379,7 @@ AddEventHandler("redemrp_inventory:onPickup", function(id)
             DroppedItems[id] = nil
             TriggerClientEvent("redemrp_inventory:UpdatePickups", -1, DroppedItems)
 		else
-			 TriggerClientEvent("ak_notification:Left", _source, "Torba", "Nie możesz podnieść tego przedmiotu" , tonumber(2000))
+			 TriggerClientEvent("ak_notification:Left", _source, "Torba", "You cannot pick up this item" , tonumber(2000))
         end
     end)
     TriggerClientEvent('redemrp_inventory:ReEnablePrompt', _source)
@@ -371,13 +393,9 @@ RegisterServerEvent("redemrp_inventory:use")
 AddEventHandler("redemrp_inventory:use", function(data)
     local _source = source
     local itemData = Config.Items[data.name]
-    if not itemData then
-		print(data.name.. " this item not registered on config.lua")
-		return
-	end
     if itemData.canBeUsed then
-        TriggerEvent("RegisterUsableItem:"..data.name, _source)
-        TriggerClientEvent("ak_notification:Left", _source, "Użyto przedmiotu" , itemData.label, tonumber(1000))
+        TriggerEvent("RegisterUsableItem:"..data.name, _source, data.meta or nil)
+        TriggerClientEvent("ak_notification:Left", _source, "Item used" , itemData.label, tonumber(1000))
     end
     if itemData.type == "item_weapon" then
         TriggerClientEvent('redemrp_inventory:UseWeapon', _source , itemData.weaponHash, data.amount ,data.meta , data.name)
@@ -487,10 +505,6 @@ function addItem (name, amount ,meta , identifier , charid , lvl )
     local output = false
     if _amount >=0 then
         local itemData = Config.Items[_name]
-    if not itemData then
-		print(_name.. " this item not registered on config.lua")
-		return
-	end
         local player_inventory =  Inventory[identifier .. "_" .. charid]
         if not _meta.uid and itemData.type == "item_weapon" then
             local numBase0 = math.random(100,999)
@@ -541,10 +555,6 @@ function removeItem (name, amount, meta, identifier , charid)
     local output = false
     if _amount >=0 then
         local itemData = Config.Items[_name]
-        if not itemData then
-            print(_name.. " this item not registered on config.lua")
-            return
-        end
         local player_inventory =  Inventory[identifier .. "_" .. charid]
         local item , id = getInventoryItemFromName(_name, player_inventory ,getMetaOutput(meta))
         if item then
@@ -575,10 +585,6 @@ function addItemLocker (name, amount ,meta, lockerId)
     local _meta = meta or {}
     if _amount >=0 then
         local itemData = Config.Items[_name]
-        if not itemData then
-            print(_name.. " this item not registered on config.lua")
-            return
-        end
         local player_locker =  Locker[lockerId]
         local item , id = getInventoryItemFromName(_name, player_locker ,getMetaOutput(meta))
         if not item then
@@ -618,10 +624,6 @@ function removeItemLocker ( name, amount,meta, lockerId)
     local output = false
     if _amount >=0 then
         local itemData = Config.Items[_name]
-        if not itemData then
-            print(_name.. " this item not registered on config.lua")
-            return
-        end
         local player_locker =  Locker[lockerId]
         local item , id = getInventoryItemFromName(_name, player_locker ,getMetaOutput(meta))
         if item then
@@ -641,6 +643,9 @@ function removeItemLocker ( name, amount,meta, lockerId)
     return output
 end
 
+
+
+
 RegisterServerEvent("redemrp_inventory:GetLocker")
 AddEventHandler("redemrp_inventory:GetLocker", function(id)
     local _source = source
@@ -649,70 +654,16 @@ AddEventHandler("redemrp_inventory:GetLocker", function(id)
         local charid = user.getSessionVar("charid")
         local job = user.getJob()
         if id == "private" then
-			if CreatedLockers[id] ~= nil then
-				if CreatedLockers[id].requireJob == job or CreatedLockers[id].requireJob == nil then
-					TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  PrepareToOutput(Locker[identifier .. "_" .. charid]) , InventoryWeight[identifier .. "_" .. charid], true)
-				end
-			else
-							TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  PrepareToOutput(Locker[identifier .. "_" .. charid]) , InventoryWeight[identifier .. "_" .. charid], true)
-			end
+		if CreatedLockers[id] ~= nil then
+            if CreatedLockers[id].requireJob == job or CreatedLockers[id].requireJob == nil then
+                TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  PrepareToOutput(Locker[identifier .. "_" .. charid]) , InventoryWeight[identifier .. "_" .. charid], true)
+            end
+		else
+		                TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  PrepareToOutput(Locker[identifier .. "_" .. charid]) , InventoryWeight[identifier .. "_" .. charid], true)
+		end
         else
             if CreatedLockers[id].requireJob == job or CreatedLockers[id].requireJob == nil  then
                 TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  PrepareToOutput(Locker[id]) , InventoryWeight[identifier .. "_" .. charid] , true)
-            end
-        end
-    end)
-end)
-
-RegisterServerEvent("redemrp_inventory:GetLockerHouse")
-AddEventHandler("redemrp_inventory:GetLockerHouse", function(id)
-    local _source = source
-    TriggerEvent('redemrp:getPlayerFromId', _source, function(user)
-        local identifier = user.getIdentifier()
-        local charid = user.getSessionVar("charid")
-		
-		TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  PrepareToOutput(Locker[id]) , InventoryWeight[identifier .. "_" .. charid] , true)
-    end)
-end)
-
-local Towns = {
-    "AnnesburgBank",
-    "ArmadilloBank",
-    "BlackwaterBank",
-    "RhodesBank",
-    "StDenisBank",
-    "StrawberryBank",
-    "TumbleweedBank",
-    "ValentineBank",
-    "VanhornBank",
-}
-
-RegisterServerEvent("redemrp_inventory:GetLockerBank")
-AddEventHandler("redemrp_inventory:GetLockerBank", function(id)
-    local _source = source
-    TriggerEvent('redemrp:getPlayerFromId', _source, function(user)
-        local identifier = user.getIdentifier()
-        local charid = user.getSessionVar("charid")
-        local finallocker = tostring(id.."_"..identifier.."_"..charid)
-        for k,v in pairs(Towns) do
-            if id == v then
-                if CreatedLockers[finallocker] == nil then
-                    CreatedLockers[finallocker] = { coords = {x = 0.0, y = 0.0, z = 0.0}, requireJob = nil }
-                    MySQL.Async.fetchAll('SELECT * FROM user_locker WHERE `identifier`=@identifier AND `charid`=@charid;', { identifier = finallocker, charid = 0 }, function(db_items)
-                        if db_items[1] ~= nil then
-                            local data = json.decode(db_items[1].items)
-                            Locker[finallocker] , _  = CreateInventory(data)
-                        else
-                            MySQL.Async.execute('INSERT INTO user_locker (`identifier`, `charid`, `items`) VALUES (@identifier, @charid, @items);', { identifier = finallocker, charid = 0, items = json.encode({}) }, function(rowsChanged)
-                                Locker[finallocker], _ , _ =  CreateInventory({})
-                            end)
-                        end
-                    end)
-                    TriggerClientEvent("redemrp_inventory:SendLockers", _source, CreatedLockers)
-                end
-                TriggerClientEvent("redemrp_inventory:SetLockerBank", _source, finallocker)
-                Wait(500)
-                TriggerClientEvent("redemrp_inventory:SendItems", _source, PrepareToOutput(Inventory[identifier .. "_" .. charid]) ,  PrepareToOutput(Locker[finallocker]) , InventoryWeight[identifier .. "_" .. charid] , true)
             end
         end
     end)
@@ -862,7 +813,7 @@ function SharedInventoryFunctions.getItem(_source, name , meta)
             local charid = user.getSessionVar("charid")
             local player_inventory =  Inventory[identifier .. "_" .. charid]
             local lvl = user.getLevel()
-            local item , id = getInventoryItemFromName(name, player_inventory , meta or "empty")
+            local item , id = getInventoryItemFromName(name, player_inventory , meta or {})
 			
             if item then
                 data.ItemInfo = item.getData()
@@ -912,10 +863,6 @@ function SharedInventoryFunctions.getItem(_source, name , meta)
                 end
             else
                 data.ItemInfo = Config.Items[name]
-                if not data.ItemInfo then
-                    print(name.. " this item not registered on config.lua")
-                    return
-                end
                 data.ItemMeta = {}
                 data.ItemAmount = 0
                  function data.AddItem(amount)
@@ -1153,8 +1100,6 @@ function CheckForSingleBlueprintMultipleCollisions(inputSlots)
 
     return IterateThroughBlueprints(inputSlots, next)
 end
-
-
 
 RegisterServerEvent("redemrp_inventory:deleteInv")
 AddEventHandler("redemrp_inventory:deleteInv", function(charid, Callback)
