@@ -1,0 +1,328 @@
+@font-face {
+  font-family: crock;
+  src: url(crock.ttf);
+}
+
+@-webkit-keyframes fadeLoop {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes fadeLoop {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+* {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	font-weight: normal;
+	overflow: hidden;
+	height: 100%;
+}
+
+#iner {
+	position:absolute;
+	margin: 0;
+    position: absolute;
+    top: 39%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+	color:white;
+	font-family: crock;
+	font-size: 140%;
+	z-index: 100;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+#iner2 {
+	position: absolute;
+	left: 15;
+	top: -2;
+	color:white;
+	font-family: crock;
+	font-size: 130%;
+	z-index: 100;
+	text-align: right;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.background,
+.outer {
+	-webkit-transform: rotate(-180deg);
+	-ms-transform: rotate(-180deg);
+	transform: rotate(-180deg);
+	-webkit-transform-origin: 50% 50%;
+	-ms-transform-origin: 50% 50%;
+	transform-origin: 50% 50%;
+}
+
+.progress {
+	-webkit-transition: 0.35s stroke-dashoffset;
+	-o-transition: 0.35s stroke-dashoffset;
+	transition: 0.35s stroke-dashoffset;
+	-webkit-transform: rotate(140deg);
+	-ms-transform: rotate(140deg);
+	transform: rotate(270deg);
+	-webkit-transform-origin: 50% 50%;
+	-ms-transform-origin: 50% 50%;
+	transform-origin: 50% 50%;
+}
+
+#huds {
+	height: 100%;
+	width: 100%;
+	display: none;
+}
+
+.huds .hud.dashboard {
+	position: absolute;
+	height: 40px;
+	bottom: 60px;
+	left: 9%;
+	top: 71%;
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.huds .hud.dashboard div {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 10px;
+}
+
+.huds .hud.dashboard div svg {
+	opacity: .2;
+}
+
+.huds .hud.dashboard .active svg {
+	opacity: .8;
+}
+
+.huds .hud.temp {
+	-webkit-transform: scale(0.9);
+	-ms-transform: scale(0.9);
+	transform: scale(0.9);
+	position: absolute;
+	bottom: -14.7vmin;
+	right: 5.7vmax;
+	position: absolute;
+	text-align: center;
+	margin: 15px 0;
+}
+
+.huds .hud.temp span {
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 12px;
+	display: block;
+	margin-top: 0px;
+}
+
+.huds .hud.temp svg {
+	opacity: 1 !important;
+}
+
+.hud.temp span {
+	opacity: 0;
+	margin-top: -4px;
+}
+
+.hud.temp span:after {
+	position: absolute;
+	content: '%';
+	top: 1px;
+	right: 4px;
+	font-size: 7px;
+}
+
+.hud.temp g {
+	-webkit-transform: translate(13px, 7px);
+	-ms-transform: translate(13px, 7px);
+	transform: translate(13px, 7px);
+}
+
+.huds .hud.thrist {
+	-webkit-transform: scale(0.9);
+	-ms-transform: scale(0.9);
+	transform: scale(0.9);
+	position: absolute;
+	bottom: -6.5vmin;
+	right: 4.7vmax;
+	position: absolute;
+	text-align: center;
+	margin: 15px 0;
+}
+
+.huds .hud.thrist span {
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 12px;
+	display: block;
+	margin-top: 0px;
+}
+
+.huds .hud.thrist svg {
+	opacity: 1 !important;
+}
+
+.hud.thrist span {
+	opacity: 0;
+	margin-top: -4px;
+}
+
+.hud.thrist span:after {
+	position: absolute;
+	content: '%';
+	top: 1px;
+	right: 4px;
+	font-size: 7px;
+}
+
+.hud.thrist g {
+	-webkit-transform: translate(13px, 7px);
+	-ms-transform: translate(13px, 7px);
+	transform: translate(13px, 7px);
+}
+
+.huds .hud.hunger {
+	-webkit-transform: scale(0.9);
+	-ms-transform: scale(0.9);
+	transform: scale(0.9);
+	position: absolute;
+	bottom: -10.5vmin;
+	right: 5.7vmax;
+	position: absolute;
+	text-align: center;
+	margin: 15px 0;
+}
+
+@media (min-width: 2500px) and (max-width: 2560px) {
+	.huds .hud.hunger {
+		-webkit-transform: scale(1.2);
+		-ms-transform: scale(1.2);
+		transform: scale(1.2);
+		position: absolute;
+		bottom: -10.5vmin;
+		right: 5.7vmax;
+		position: absolute;
+		text-align: center;
+		margin: 15px 0;
+	}
+	.huds .hud.thrist {
+		-webkit-transform: scale(1.2);
+		-ms-transform: scale(1.2);
+		transform: scale(1.2);
+		position: absolute;
+		bottom: -6.5vmin;
+		right: 4.7vmax;
+		position: absolute;
+		text-align: center;
+		margin: 15px 0;
+	}
+	.huds .hud.temp {
+		-webkit-transform: scale(1.2);
+		-ms-transform: scale(1.2);
+		transform: scale(1.2);
+		position: absolute;
+		bottom: -14.7vmin;
+		right: 5.7vmax;
+		position: absolute;
+		text-align: center;
+		margin: 15px 0;
+	}
+}
+
+@media (min-width: 3800px) and (max-width: 3840px) {
+	.huds .hud.hunger {
+		-webkit-transform: scale(1.6);
+		-ms-transform: scale(1.6);
+		transform: scale(1.6);
+		position: absolute;
+		bottom: -10.5vmin;
+		right: 5.7vmax;
+		position: absolute;
+		text-align: center;
+		margin: 15px 0;
+	}
+	.huds .hud.thrist {
+		-webkit-transform: scale(1.6);
+		-ms-transform: scale(1.6);
+		transform: scale(1.6);
+		position: absolute;
+		bottom: -6.5vmin;
+		right: 4.7vmax;
+		position: absolute;
+		text-align: center;
+		margin: 15px 0;
+	}
+	.huds .hud.temp {
+		-webkit-transform: scale(1.6);
+		-ms-transform: scale(1.6);
+		transform: scale(1.6);
+		position: absolute;
+		bottom: -14.7vmin;
+		right: 5.7vmax;
+		position: absolute;
+		text-align: center;
+		margin: 15px 0;
+	}
+}
+
+.huds .hud.hunger span {
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 12px;
+	display: block;
+	margin-top: 0px;
+}
+
+.huds .hud.hunger svg {
+	opacity: 1 !important;
+}
+
+.hud.hunger span {
+	opacity: 0;
+	margin-top: -4px;
+}
+
+.hud.hunger span:after {
+	position: absolute;
+	content: '%';
+	top: 1px;
+	right: 4px;
+	font-size: 7px;
+}
+
+.hud.hunger g {
+	-webkit-transform: scale(1.7) translate(5px, 5px);
+	-ms-transform: scale(1.7) translate(5px, 5px);
+	transform: scale(1.7) translate(5px, 5px);
+}
+
+.orangeStroke {
+	stroke: #ffaf02;
+}
+
+.redStroke {
+	stroke: #FF0245;
+}
