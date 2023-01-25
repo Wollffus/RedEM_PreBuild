@@ -1,8 +1,4 @@
-# RedEM 2023 Reboot PreBuild
-
-# Want some resources for your new server? https://digitalresources.tebex.io/
-
-
+# RedEM 2023 Reboot PreBuild\
 
 A pre-built RedM server using the 20203 Reboot RedEM:RP framework. This is a basic server build, with only public resources.
 This is not a plug and play server download. You still will have to take a few steps in getting it set up to your preferences.
@@ -53,6 +49,10 @@ You will also need a database set up, here is a common user friendly one.
 
 You will need a form of Apache distribution, here is a common user friendly one.
 - https://www.apachefriends.org/download.html
+
+
+# Want some resources for your new server? https://digitalresources.tebex.io/
+
 
 # Want to use TX Admin?
 open the Start.bat provided and remove +exec server.cfg than start the .bat 
