@@ -1,0 +1,10 @@
+{
+    "version":1.0,
+    "changelog" : "Wolfhouse Maintain",
+    "old":[
+        {
+            "version":0.8,
+            "changelog" : "Badger Release"
+        }
+    ]
+}
