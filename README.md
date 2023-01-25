@@ -1,5 +1,9 @@
 # RedEM 2023 Reboot PreBuild
 
+# Want some resources for your new server? https://digitalresources.tebex.io/
+
+
+
 A pre-built RedM server using the 20203 Reboot RedEM:RP framework. This is a basic server build, with only public resources.
 This is not a plug and play server download. You still will have to take a few steps in getting it set up to your preferences.
 
