@@ -1,10 +1,10 @@
 Config = {
-	Guild_ID = '835542827907416116',
-	Bot_Token = 'ODQzMDMyNDg1ODU1NDk0MTc0.YJ99Lw.MQ19AHPjkzjkfZxW0k6TNmTeduE',
+	Guild_ID = 'CHANGE_ME',
+	Bot_Token = 'CHANGE_ME',
 	RoleList = {
-		['Resource Assets'] = 970409577843675207,
-		['Staff'] = 847730552005459980,
-		['Dev'] = 974361226148737094,
+		['Whitelisted'] = CHANGE_ME,
+		['Staff'] = CHANGE_ME,
+		['Dev'] = CHANGE_ME,
 	},
 }
 
