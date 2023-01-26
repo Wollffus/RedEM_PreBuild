@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
+		<link rel="stylesheet" href="css/inventory.css">
+		<title>RedEM:RP Inventory 2022</title>
+	</head>
+	<body>
+
+
+		<div class='main'>
+			<div class="inventory">
+				<div class="invinfo"><div class="invtext">INVENTORY</div><div class="money" id="money">16.34$</div> <div class="clock" id="clock">16:34</div> <div class="invweight" id="weight" >15.0/24KG</div></div>
+				<div class="scroll" id="selfinv">
+					<div class="column box1"> 
+						
+					</div> 
+				</div> 
+				<br/><br/>
+				<div class="scroll" id="secondinv">
+					<div class="column box0"></div>
+				</div> 
+				<div class="info">
+					<div id="info2"></div>
+					<div id="info3"></div>
+				</div>
+			</div>
+
+
+			<div class="grid" style="display:none !important;">
+				<div class="cell slot1"></div>
+				<div class="cell slot2"></div>
+				<div class="cell slot3"></div>
+				<div class="cell slot4"></div>
+				<div class="cell slot5"></div>
+				<div class="cell slot6"></div>
+				<div class="cell slot7"></div>
+				<div class="cell slot8"></div>
+				<div class="cell slot9"></div>
+			</div>
+			<div class="invCraft" id="craftButton" style="display:none !important;">CRAFT</div>
+			<div class="invSplit" id="splitBox">
+				<span class="splitmsg">Split by amount?</span><br/>
+				<input type="number" class="splitamount" id="splitamt" name="splitamt"><br>
+				<button id="splitConf" class="splitbutton">Confirm</button>
+				<button id="splitCancel" class="splitbutton" style="float:right">Cancel</button>
+			</div>
+		</div>
+	</body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
+	<script src="https://unpkg.com/web-animations-js@2.3.2/web-animations.min.js" type="text/javascript"></script>
+	<script src="https://unpkg.com/muuri@0.8.0/dist/muuri.min.js" type="text/javascript"></script>
+	<script src="js/inventory.js" type="text/javascript"></script>
+</html>
