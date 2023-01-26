@@ -1,0 +1,275 @@
+html, body, p, button{
+	padding: 0;
+	margin: 0;
+}
+body.active{
+	background-color: rgba(0,0,0,0.5);
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+textarea:focus, input:focus{
+    outline: none;
+}
+*:focus {
+    outline: none;
+}
+@-webkit-keyframes fadeinout {
+	0%,100% { opacity: 0; }
+	50% { opacity: 1; }
+  }
+  
+@font-face {
+			font-family: crock;
+			src: url(media/font/crock.ttf);
+		}
+.container{
+	height: 700px;
+	width: 900px;
+	margin:auto;
+}
+body{
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+  font-family: "crock", crock, serif;
+}
+
+.loading {
+	position:absolute;
+	top:60vh;
+	left:45vw;
+	transform:translate(0, -50%);
+	font-family:crock;
+	font-size:18pt;
+	color:red;
+    -webkit-animation: fadeinout 0.5s infinite;
+    animation: fadeinout 0.5s infinite;
+	display:none;
+}
+
+.cont-content{
+	margin-top: 25vh;
+	background-image: url(media/img/bg2.png);
+	background-image: url(media/img/bg2.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 1150px 800px;
+}
+.cont-waiting{
+	background: #f9f9f9;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+}
+.flex{
+	display: flex;
+}
+/*######################################################*/
+/* ###############         BUTTON        ###############*/
+/*######################################################*/
+button{
+	cursor: pointer;
+	border: 0;
+}
+p{
+	
+	text-align:center;
+}
+.btn{
+	width: 236px;
+	height: 77px;
+	font-family: "crock", crock, serif;
+	font-size: 22px;
+	text-transform: uppercase;
+	color: white;
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+	display: flex;
+	padding-left: 20px;
+	background: transparent;
+	transition: all .2s ease-in-out;
+}
+.btn:hover{
+	transition: all .2s ease-in-out;
+	transform: scale(1.1);
+}
+.btn span:last-child{
+	font-size: 15px;
+	font-family: "crock", crock, serif;
+	text-transform: none;
+}
+
+.btn-blue{
+	background-image: url(media/img/bg.png);
+ background-repeat: no-repeat;
+   background-position: center;
+   background-size:290px 170px;
+}
+
+.btn-tax{
+	background-image: url(media/img/bgt.png);
+ background-repeat: no-repeat;
+   background-position: center;
+   background-size:290px 170px;
+}
+
+.btn-violet{
+	 background-image: url(media/img/bg.png);
+  background-repeat: no-repeat;
+	background-position: center;
+	background-size:290px 170px;
+}
+
+.btn-out{
+	 background-image: url(media/img/bg.png);
+  background-repeat: no-repeat;
+	background-position: center;
+	background-size:290px 170px;
+}
+.btn-back{
+		text-align:center;
+		margin-left:53%;
+
+	 background-image: url(media/img/bg.png);
+  background-repeat: no-repeat;
+	background-position: center;
+	background-size:290px 170px;
+}
+.btn-check{
+	margin-left:53%;
+	margin-top: 4%;
+	text-align:center;
+	 background-image: url(media/img/bg.png);
+  background-repeat: no-repeat;
+	background-position: center;
+	background-size:290px 170px;
+}
+
+/*######################################################*/
+/* ###############       MAIN MENU       ###############*/
+/*######################################################*/
+.balance{
+	width: 403px;
+    height: 183px;
+    margin-right: 60px;
+	 margin-left: 60px;
+    margin-bottom: 60px;
+	  margin-top: 60px;
+    padding: 40px;
+    color: white;
+    font-size: 16px;
+    background-image: url(media/img/bg.png);
+  background-repeat: no-repeat;
+	background-position: center;
+	background-size:600px 568px;
+}
+.balance .name{
+	font-size: 25px;
+	color: #fff;
+	margin-bottom: 5px;
+    display: block;
+}
+.balance .money{
+	font-size: 60px;
+	color: #fff;
+	font-family: "crock", crock, serif;
+}
+.balance .money .dollars{
+	color: #e1e0e0;
+}
+.list-btn{
+	margin-top:6%;
+	height: 273px;
+	width: 236px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+
+/*######################################################*/
+/* ###############     WITHDRAW MENU      ###############*/
+/*######################################################*/
+.cont-content2{
+	margin-top: 35vh;
+	background-image: url(media/img/bg2.png);
+	background-image: url(media/img/bg2.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 700px 600px;
+}
+.banniere{
+	width: 464px;
+	margin-right: 60px;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+form{
+	margin-top: 60px;
+}
+label{
+	margin-bottom: 10px;
+	font-size: 17px;
+	color: white;
+	font-family: "crock", crock, serif;
+}
+.input-cont{
+	width: 210px;
+    height: 87px;
+    display: flex;
+    flex-direction: column;
+	margin-left:28%;
+	margin-bottom:-18%;
+	position:realtive;
+
+}
+.input-cont2{
+	width: 210px;
+    height: 87px;
+    display: flex;
+    flex-direction: column;
+	margin-left:28%;
+	margin-bottom:-18%;
+	position:realtive;
+
+}
+.input-cont2 input{
+	width: 100%;
+    height: 25px;
+    text-align: center;
+    border: 0;
+	color: white;
+    font-size: 30px;
+	background:transparent;
+   font-family: "crock", crock, serif;
+}
+
+.input-cont input{
+	width: 100%;
+    height: 50px;
+    text-align: center;
+    border: 0;
+	color: white;
+    font-size: 60px;
+	 background: transparent;
+   font-family: "crock", crock, serif;
+}
+.input-cont input::-webkit-input-placeholder {
+  color: white;
+}
+.double-input{
+	display: flex;
+	justify-content: space-between;
+}
+.double-input .input-cont{
+	width: 300px;
+}
+.double-input input{
+	font-size: 35px;
+}
