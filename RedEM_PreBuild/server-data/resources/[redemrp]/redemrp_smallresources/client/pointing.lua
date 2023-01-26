@@ -2,7 +2,7 @@
 Citizen.CreateThread(function()
     while true do
         Wait(0)
-        if (IsControlJustPressed(0,0x4CC0E2FE))  then --B
+        if (IsControlJustPressed(0,0xF3830D8E))  then --J
             local ped = PlayerPedId()
             if ( DoesEntityExist( ped ) and not IsEntityDead( ped ) ) then
 
