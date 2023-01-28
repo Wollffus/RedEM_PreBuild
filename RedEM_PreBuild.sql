@@ -7,7 +7,7 @@
 
 
 -- Dumping database structure for redemrp
---DROP DATABASE IF EXISTS `redemrp`; ( is not recommanded, because lot of novice dev drop current database exist from old server or others DB.sql with same name)
+-- DROP DATABASE IF EXISTS `redemrp`; ( is not recommanded, because lot of novice dev drop current database exist from old server or others DB.sql with same name)
 
 CREATE DATABASE IF NOT EXISTS `redemrp` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `redemrp`;
