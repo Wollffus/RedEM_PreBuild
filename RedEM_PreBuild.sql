@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `characters` (
   `characterid` int(11) DEFAULT 0,
   `citizenid` varchar(10) COLLATE utf8mb4_bin NOT NULL,
   `money` int(11) DEFAULT 200,
-  `bank` int(11) NOT NULL,
+  `bank` int(11) NOT 0,
   `job` varchar(50) COLLATE utf8mb4_bin DEFAULT 'unemployed',
   `firstname` varchar(50) COLLATE utf8mb4_bin DEFAULT 'first',
   `lastname` varchar(50) COLLATE utf8mb4_bin DEFAULT 'last',
