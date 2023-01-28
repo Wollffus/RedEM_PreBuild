@@ -5,10 +5,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- Dumping database structure for redemrp
---DROP DATABASE IF EXISTS `redemrp`; ( is not recommanded, because lot of novice dev drop current database exist from old server or others DB.sql with same name)
-
 CREATE DATABASE IF NOT EXISTS `redemrp` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `redemrp`;
 
