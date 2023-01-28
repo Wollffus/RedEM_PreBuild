@@ -37,7 +37,7 @@ NewPlayer = function(source, charid, dbdata)
 
     -- Roll your own discord role permissions sytem here.
     --[[
-    local roles = exports["redemrp_discordwl"]:GetDiscordRoles(self.source)
+       local roles = exports["WH_Redemrp_Whitelist"]:GetDiscordRoles(self.source)
     if roles then
         for i=1,#roles do
             if roles[i] == "ROLEID" then -- Owner
