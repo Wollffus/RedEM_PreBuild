@@ -464,7 +464,7 @@ AddEventHandler('onResourceStart', function(resourceName)
 	end
 	print('^5 '..resourceName..'^2 Successfully Loaded ^7')
     print(version )
-	print('^3 Developed by Badger, Maintained by WolfHouse Studios Dev Team ^7')
+	print('^3 Maintained by WolfHouse Studios Dev Team ^7')
 	print('^1 If you require support join:^5 https://discord.gg/zGVDppYxfk ^7')
 end)
 --
