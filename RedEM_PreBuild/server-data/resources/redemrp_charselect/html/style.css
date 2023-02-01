@@ -1,0 +1,258 @@
+@font-face {
+  font-family: crock;
+  src: url(crock.ttf) format("truetype");
+}
+
+body {
+	overflow:hidden;
+	text-shadow:#000 -1px -1px, #000 1px -1px, #000 1px 1px, #000 -1px 1px, #000 -1px -1px;
+}
+
+.loading {
+  height: 100%;
+  width: 100%;
+  background-color:#000;
+  background-image: url(rdr21.png);
+  background-size: cover;
+  z-index: 11;
+}
+.bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  background-image: url("https://cdn.discordapp.com/attachments/953655269529911366/994125262751023144/ValleyLogoGIF_-_SpicedCreations.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 10;
+}
+
+.watermark {
+	position:absolute;
+	left:0;
+	bottom:0;
+	margin:5px;
+	opacity:0.8;
+}
+
+.watermark img {
+	width:15%;
+}
+
+.loadingtext {
+  margin: 0;
+  position: absolute;
+  top: 84%;
+  left: 50%;
+  color: white;
+  margin-right: -50%;
+  font-family: "crock", crock, serif;
+  font-size: 50px;
+  transform: translate(-50%, -50%);
+  text-align:center;
+}
+.loadingsubtext {
+  margin: 0;
+  position: absolute;
+  text-align:center;
+  top: 90%;
+  left: 50%;
+  color: white;
+  margin-right: -50%;
+  font-family: "crock", crock, serif;
+  font-size: 28px;
+  transform: translate(-50%, -50%);
+}
+
+		#main{
+			margin: 0 auto;
+			width: 100%;
+			height: 60%;
+		}
+		#remover{
+			position: absolute;
+			left: 38%;
+			top: 40%;
+			text-align: center;
+			margin: 0 auto;
+			width: 25%;
+			height: 15%;
+			font-size: 20px;
+			background-color: rgba(0,0,0,0.8);
+			border-radius: 10px;
+		}
+		#confirm{
+			margin: 0 auto;
+			text-align: center;
+			width: 30%;
+			margin-top: 6%;
+			font-family: "crock", crock, serif;
+			font-size: 20px;
+			color:white;
+			border: 0;
+			background-color: #b50000;
+		}
+		#cancelDeletion{
+			margin: 0 auto;
+			text-align: center;
+			width: 30%;
+			margin-left: 2%;
+			margin-top: 3%;
+			font-family: "crock", crock, serif;
+			font-size: 20px;
+			color:white;
+			border: 0;
+			background-color: #14719c;
+		}
+		#pewien{
+			color:white;
+			font-weight: bold;
+			margin-top: 5%;
+		}
+		button {
+			border-radius: 10px;
+			text-align: center;
+			font-family: "crock", crock, serif;
+			font-size: 20px;
+			color:white;
+			transition:all 0.2 ease;
+		}
+		.create:hover {
+			transform:scale(1.3);
+			background:#0f0;
+		}
+		.delete:hover {
+			transform:scale(1.3);
+			background:#f00;
+		}
+		.createnew:hover {
+			transform:scale(1.3);
+			background:#0f0;
+		}
+		.char{
+			text-align: center;
+			margin-top: 0%;
+			float: left;
+			width: 15%;
+			height: 40%;
+			background: rgba(255, 123, 0, 0.61);
+			border-radius: 15px;
+			margin: 20px;
+		}
+		.money, .gold{
+			text-align: center;
+			font-size:20px;
+			font-family: "crock", crock, serif;
+			color:white;
+			text-shadow: 0 0 5px black, 0 0 5px black;
+		}
+
+		.fname{
+			text-align: center;
+			margin-top: 25%;
+			font-size:25px;
+			font-family: "crock", crock, serif;
+			color:white;
+			text-shadow: 0 0 5px black, 0 0 5px black;
+		}
+		.create{
+			margin-top: 0%;
+			margin-right:20px;
+			border: 0;
+			background-color: #647857;
+			opacity:0.8;
+			transition:all 0.2s ease;
+		}
+		
+		.delete{
+			margin-top: -2%;
+			border: 0;
+			background-color: #785757;
+			opacity:0.8;
+			transition:all 0.2s ease;
+		}
+		.createnew{
+			margin: 0 auto;
+			text-align: center;
+			border: 0;
+			background-color: #5b6685;
+			opacity:0.8;
+			transition:all 0.2s ease;
+		}
+		.ctext{
+			font-family: "crock", crock, serif;
+			font-size: 30px;
+			color:white;
+			margin-top: 25%;
+			text-shadow: 0 0 5px black, 0 0 5px black;
+		}
+		#creator{
+			position:absolute;
+			text-align:center;
+			margin-left: 38%;
+			top: 40%;
+		}
+		#name{
+			font-family: "crock", crock, serif;
+			font-size: 20px;
+			border: 5px solid white; 
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    padding: 15px;
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 10px 0;
+			margin: 0 auto;
+		}
+		#lastname{
+			font-family: "crock", crock, serif;
+			font-size: 20px;
+			border: 5px solid white; 
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    padding: 15px;
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 10px 0;
+			margin: 0 auto;
+		}
+		.create2{
+			width: 35%;
+			height: 8vh;
+			margin-top: 3%;
+			font-family: "crock", crock, serif;
+			font-size: 20px;
+			color:white;
+			border: 0;
+			background-color: #647857;
+		}
+		.cancel2{
+			width: 35%;
+			height: 8vh;
+			margin-top: 3%;
+			font-family: "crock", crock, serif;
+			font-size: 20px;
+			color:white;
+			border: 0;
+			background-color: #647857;
+		}
+		::placeholder {
+		color: black;
+		}
