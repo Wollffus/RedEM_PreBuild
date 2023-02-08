@@ -1,0 +1,171 @@
+<html>
+
+<head>
+	<title> RedEM:RP - Character Selection </title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold"
+		title="roboto">
+
+	<link href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" rel="stylesheet">
+	<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+
+	<style>
+		.storm {
+			display: none;
+			text-shadow: 1px 1px #666, -1px 1px #666, 1px -1px #666, -1px -1px #666;
+			font-family:sans-serif;
+			color: transparent;
+			position:absolute;
+			bottom: 5px;
+			font-size: 18pt;
+			left: 50%;
+			transform: translate(-50%, 0);
+		}
+
+		.blinking {
+    		animation: mymove 2s infinite alternate;
+		}
+
+		@keyframes mymove {
+			from {opacity:0;}
+			to {opacity: 0.6;}
+		}
+	</style>
+</head>
+
+<body id="body">
+
+	<script src="js/jquery-1.4.1.min.js" type="text/javascript"></script>
+	<script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>
+	<script src="js/jquery-func.js" type="text/javascript"></script>
+	<script src="js/listener.js" type="text/javascript"></script>
+	<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+
+	<div class="bg" id="loading">
+		<div class="loading">
+			<div class="loadingtext">WELCOME TO <span style="color:#cf2e2e">REDEM:RP</span></div>
+			<div class="loadingsubtext"><span id="version"></span><br/><span id="loadingtext">Loading character data...</span></div>
+		</div>
+	</div>
+
+	<div id="remover">
+	</div>
+	<div id="main">
+	</div>
+	<div id='creator'>
+		<input type='text' id='name' placeholder='First Name...' required maxlength="12" pattern="[A-Za-z]"
+			onkeypress="">
+		<input type='text' id='lastname' placeholder='Last Name...' required maxlength="16" pattern="[A-Za-z]"
+			onkeypress="">
+		</br>
+		<button onclick="confirmNewCharacter()" class="create2">Create</button>
+		<button onclick="cancel()" class="cancel2">Cancel</button>
+	</div>
+	<script>		
+		randomNum = function(min, max) {
+  			return Math.random() * (max - min) + min;
+		}
+
+		$("#main").fadeOut();
+		$("#creator").fadeOut();
+		window.addEventListener("message", function (event) {
+			if (event.data.version) {
+				$("#version").html("version " + event.data.version);
+				$("#version2").html(event.data.version);
+				setTimeout(function () {
+					$("#loadingtext").empty();
+					$("#loadingtext").html("Verifying character data...");
+				}, getRandomInt(1000, 2000));
+				setTimeout(function () {
+					$("#loadingtext").empty();
+					$("#loadingtext").html("Loading server data...");
+				}, getRandomInt(4000, 6000));
+				setTimeout(function () {
+					$("#loadingtext").empty();
+					$("#loadingtext").html("Starting scripts...");
+				}, getRandomInt(6000, 8000));
+			}
+			if (event.data.loading == false) {
+				$("#loading").fadeOut();
+				$("#main").fadeOut();
+				$("#creator").fadeOut();
+			}
+			if (event.data.loading == true) {
+				var randomnum = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+				$(".loading").css("background-image", "url(rdr2"+randomnum+".png)");
+				$("#loading").fadeIn();
+			}
+			if (event.data.new == true) {
+				createNewCharacter();
+			}
+		});
+
+		function getRandomInt(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+		var body = document.getElementById('body');
+		var main = document.getElementById('main');
+		var creator = document.getElementById('creator');
+		var r = document.getElementById("remover");
+		r.style.display = "none";
+		//creator.style.visibility = 'hidden';
+		$("#creator").fadeOut();
+
+		function createNewCharacter() {
+			$("#main").fadeOut();
+			$("#creator").fadeIn();
+			$("#body").fadeIn();
+			$.post(`http://${GetParentResourceName()}/switchNewChar`);
+		}
+
+		function confirmNewCharacter() {
+			var name = document.getElementById('name').value;
+			var lastname = document.getElementById('lastname').value;
+			$("#main").fadeOut();
+			$("#creator").fadeOut();
+			$.post(`http://${GetParentResourceName()}/newCharacter`, JSON.stringify({ name: name, lname: lastname }));
+
+		}
+
+		function cancel() {
+			$("#main").fadeOut();
+			$("#creator").fadeOut();
+			$.post(`http://${GetParentResourceName()}/cancelNew`, JSON.stringify({ name: name, lname: lastname }));
+
+		}
+
+		function select(id, pedid) {
+			$("#main").fadeOut();
+			$("#creator").fadeOut();
+			$.post(`http://${GetParentResourceName()}/selectCharacter`, JSON.stringify({ id: id, pedid: pedid }));
+		}
+
+		function confirm(id) {
+			r.innerHTML = "";			
+			r.style.display = "block";
+			r.innerHTML += "<div id='pewien'>Are you sure? This action cannot be undone!</div></br>";
+			r.innerHTML += "<button id='confirm' onclick='delet(" + id + ")'>Confirm</buton>";
+			r.innerHTML += "<button id='cancelDeletion' onclick='cancelDeletion()'>Cancel</button>";
+		}
+
+		function cancelDeletion() {
+			r.innerHTML = "";
+			r.style.display = "none";
+		}
+
+		function delet(id) {
+			r.innerHTML = "";
+			r.style.display = "none";
+			$.post(`http://${GetParentResourceName()}/deleteCharacter`, JSON.stringify(id));
+		}
+
+		var randomnum = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+		$(".loading").css("background-image", "url(rdr2"+randomnum+".png)");
+	</script>
+</body>
+
+</html>
