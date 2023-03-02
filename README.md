@@ -52,7 +52,7 @@ You will need a form of Apache distribution, here is a common user friendly one.
 
 
 # Want some resources for your new server? https://digitalresources.tebex.io/
-
+# Want a discount on those resources??? https://discord.gg/zGVDppYxfk
 
 # Want to use TX Admin?
 open the Start.bat provided and remove +exec server.cfg than start the .bat 
