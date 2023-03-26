@@ -1,0 +1,258 @@
+@font-face {
+     font-family: RDRLino-Regular;
+     src: url(../fonts/RDRLino-Regular.ttf) format('truetype') 
+}
+ @font-face {
+     font-family: HapnaSlabSerif-Medium;
+     src: url(../fonts/HapnaSlabSerif-Medium.ttf) format('truetype') 
+}
+ .menu {
+     position: relative;
+     font-family: "RDRLino-Regular";
+     width: 26%;
+     height: 90%;
+     color: #fff;
+     position: absolute;
+     padding: 8px;
+     background-image: url(inkroller_1a.png);
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: 100% 100%;
+}
+ .topline {
+     position: relative;
+     width: 85%;
+     height:0.4%;
+     margin: auto auto;
+     background-image: url(divider_line.png);
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: 100% 100%;
+}
+ .scrollbottom {
+     position: relative;
+     top:-2%;
+     width: 85%;
+     height:6%;
+     margin-left: auto ;
+     margin-right: auto ;
+     background-image: url(scroller_right_bottom.png);
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: 100% 100%;
+}
+ .noscrollbottom {
+     position: relative;
+     top:-2%;
+     width: 85%;
+     height:6%;
+     margin-left: auto ;
+     margin-right: auto ;
+     background-image: url(noscroller_right_bottom.png);
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: 100% 100%;
+}
+ .head {
+     display: block;
+     text-align: center;
+     overflow: hidden;
+     white-space: nowrap;
+     margin-left: 10px;
+     margin-right: 10px;
+}
+ .menu .head {
+     position: relative;
+     text-align: center;
+     height: 10%;
+     top:1%;
+     color: #fff;
+     font-weight: 300;
+     font-size: 30px;
+     background-image: url(menu_header_1a.png);
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: 90% 100%;
+     margin-bottom:10px;
+     margin-top:10px;
+}
+ .menu .menu-items {
+     position: relative;
+     height: 45%;
+     width: 85%;
+     overflow-y: hidden;
+     margin-left:auto;
+     margin-right:auto;
+}
+ .menu .menu-items .menu-item {
+     position: relative;
+     width:92%;
+     height:12.4%;
+     padding-left: 3%;
+     padding-right: 3%;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     font-size: 20px;
+     text-align: left;
+     margin-left:auto;
+     margin-right:auto;
+     background-image: url(selection_box_bg_1d.png);
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: 100% 100%;
+     font-family: "HapnaSlabSerif-Medium", HapnaSlabSerif-Medium, serif;
+}
+ .menu .menu-items .menu-item.selected {
+     background-image: url(selsected.png),url(selection_box_bg_1d.png);
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: 100% 100%;
+}
+ .menu .menu-items .menu-item.slider {
+     min-height:2.5vh;
+     font-size: 16px;
+}
+ #slider-label{
+     width: fit-content;
+     float:left;
+     white-space: nowrap;
+}
+ i{
+     float:left;
+     font-size:18px;
+     margin-top:3%;
+}
+ .desciption {
+     position: relative;
+     font-size: 19px;
+     margin-left:auto;
+     margin-right:auto;
+     text-align: center;
+     font-family: "HapnaSlabSerif-Medium", HapnaSlabSerif-Medium, serif;
+     top:-3%;
+     height: 22%;
+     width: 80%;
+}
+ .subdesciption {
+     position: relative;
+     font-size: 17px;
+     margin-left:auto;
+     margin-right:auto;
+     text-align: center;
+     font-family: "HapnaSlabSerif-Medium", HapnaSlabSerif-Medium, serif;
+     top:1%;
+     height: 5%;
+     width: 80%;
+}
+ .subtext {
+     position: relative;
+     margin-left:auto;
+     margin-right:auto;
+     text-align: center;
+     font-family: RDRLino-Regular;
+     margin-top: 5%;
+     margin-bottom: 5%;
+}
+ .options-amount {
+     font-family: "HapnaSlabSerif-Medium", HapnaSlabSerif-Medium, serif;
+     position: relative;
+     font-size:15px;
+     text-align: right;
+     padding-right: 8%;
+     top:-5%;
+     color: #c9c9c9;
+}
+ .head > span {
+     position: relative;
+     display: inline-block;
+     top: 50%;
+     transform: translate(0, -50%) 
+}
+ .head > span::before, .head > span::before {
+     right: 105%;
+     margin-right: 15px;
+}
+ .head > span::after {
+     left: 105%;
+     margin-left: 15px;
+}
+ .arrows {
+     display: flex;
+     justify-content: space-between;
+     align-items: right;
+     position: relative;
+     width: fit-content;
+     float:right;
+     margin-right:5%;
+}
+ i{
+     margin-left: 10%;
+     margin-right: 10%;
+}
+ .check {
+     width: fit-content;
+     float:right;
+     margin-right:11%;
+}
+ #item-label {
+     width: fit-content;
+     float:left;
+}
+ .menu.align-left {
+     left: 40;
+     top: 50%;
+     transform: translate(0, -50%);
+}
+ .menu.align-top-left {
+     left: 40;
+     top: 40;
+}
+ .menu.align-top {
+     left: 50%;
+     top: 40;
+     transform: translate(-50%, 0);
+}
+ .menu.align-top-right {
+     right: 10;
+     top: 40;
+}
+ .menu.align-right {
+     right: 40;
+     top: 50%;
+     transform: translate(0, -50%);
+}
+ .menu.align-bottom-right {
+     right: 40;
+     bottom: 40;
+}
+ .menu.align-bottom {
+     left: 50%;
+     bottom: 40;
+     transform: translate(-50%, 0);
+}
+ .menu.align-bottom-left {
+     left: 40;
+     bottom: 40;
+}
+ .menu.align-center {
+     left: 50%;
+     top: 50%;
+     transform: translate(-50%, -50%);
+}
+ ::-webkit-scrollbar {
+     width: 8px;
+     border-left: 4px solid #272733;
+}
+ ::-webkit-scrollbar-track {
+     background: #272733;
+     border-left: 4px solid #272733;
+}
+ ::-webkit-scrollbar-thumb {
+     background: #1a242d;
+     border-left: 4px solid #272733;
+}
+ ::-webkit-scrollbar-thumb:hover {
+     background: #1a242d;
+     border-left: 4px solid #272733;
+}

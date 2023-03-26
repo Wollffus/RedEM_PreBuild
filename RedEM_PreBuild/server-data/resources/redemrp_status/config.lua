@@ -3,6 +3,7 @@
 -- Drink()
 -- Wine()
 -- Whisky()
+-- EatBowl()
 -- Shampan()
 -- Beer()
 -- Coffe()

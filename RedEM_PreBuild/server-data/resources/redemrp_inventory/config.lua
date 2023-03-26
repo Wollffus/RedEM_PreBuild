@@ -9,6 +9,7 @@ Config.Crafting = {
             "cotton,3","purealcohol","empty",
             "empty","empty","empty"
         },
+        requireJob = { "doctor" },
     },
 
     ["mbandage"] = {
@@ -20,6 +21,7 @@ Config.Crafting = {
         requireId = "cooking",
         requireJob = { "doctor" },
     },
+
 
     -------- cooking
     --

@@ -1,5 +1,10 @@
 RedEM = exports["redem_roleplay"]:RedEM()
 
+data = {}
+TriggerEvent("redemrp_inventory:getData",function(call)
+    data = call
+end)
+
 local PlayersStatus = {}
 
 AddEventHandler("redemrp:playerLoaded", function(source, Player)
