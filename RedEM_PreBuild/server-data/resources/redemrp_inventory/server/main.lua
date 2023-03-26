@@ -77,7 +77,9 @@ AddEventHandler(
 )
 
 RegisterServerEvent("redemrp_inventory:update")
-AddEventHandler("redemrp_inventory:update",function(_type, data, target, LockerID, stashId)
+AddEventHandler(
+    "redemrp_inventory:update",
+    function(_type, data, target, LockerID, stashId)
         local _source = source
         local _target = target
         if not data then

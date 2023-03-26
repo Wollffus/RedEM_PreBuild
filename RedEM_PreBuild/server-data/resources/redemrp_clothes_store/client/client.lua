@@ -7,7 +7,7 @@ local Outfits_tab = {}
 local CurrentPrice = 0
 
 MenuData = {}
-TriggerEvent("rdr_menu:getData", function(call)
+TriggerEvent("redemrp_menu_base:getData", function(call)
     MenuData = call
 end)
 

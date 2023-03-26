@@ -42,8 +42,8 @@ or write own code in ClientAction function
 ```
 You can also use server event to add thirst and hunger from other scripts
 ```
-TriggerServerEvent('redemrp_status:AddAmount', hunger , thirst)
-TriggerServerEvent('redemrp_status:AddAmount', 0 , 25)
+TriggerServerEvent('redemrp_status:server:AddHungerThirst', hunger , thirst)
+TriggerServerEvent('redemrp_status:server:AddHungerThirst', 0 , 25)
 ```
 
 
