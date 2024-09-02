@@ -1,0 +1,131 @@
+<html>
+
+<head>
+    <!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script> -->
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="skinCreator">
+
+        <!-- Tabs -->
+        <div class="tab">
+            <!-- <a href="#" class="identity disabled" data-link="identity">Identité</a> -->
+            <a href="#" class="vetements active" data-link="vetements">Components</a>
+        </div>
+
+        <form id="formSkinCreator">
+
+            <!-- BLOCK VISAGE -->
+            <div class="block visage active">
+
+
+                <div class="group">
+                    <h2>Components</h2>
+
+                    <div class="input">
+                        <div class="label">Saddle Blanket</div>
+                        <div class="label-value" data-legend="/64"></div>
+                        <div class="type-range">
+                            <a href="#" class="arrow arrow-left">&nbsp;</a>
+                            <input value="0" type="range" class="czaprak" id="czaprak" min="1" max="64">
+                            <a href="#" class="arrow arrow-right">&nbsp;</a>
+                        </div>
+                    </div>
+
+                    <div class="input">
+                        <div class="label">Bag</div>
+                        <div class="label-value" data-legend="/20"></div>
+                        <div class="type-range">
+                            <a href="#" class="arrow arrow-left">&nbsp;</a>
+                            <input value="0" type="range" class="bag" id="bag" min="1" max="20">
+                            <a href="#" class="arrow arrow-right">&nbsp;</a>
+                        </div>
+                    </div>
+
+                    <div class="input">
+                        <div class="label">Tail</div>
+                        <div class="label-value" data-legend="/85"></div>
+                        <div class="type-range">
+                            <a href="#" class="arrow arrow-left">&nbsp;</a>
+                            <input value="0" type="range" class="tail" id="tail" min="1" max="85">
+                            <a href="#" class="arrow arrow-right">&nbsp;</a>
+                        </div>
+                    </div>
+              
+
+                    <div class="input">
+                        <div class="label">Mane</div>
+                        <div class="label-value" data-legend="/102"></div>
+                        <div class="type-range">
+                            <a href="#" class="arrow arrow-left">&nbsp;</a>
+                            <input value="0" type="range" class="mane" id="mane" min="1" max="102">
+                            <a href="#" class="arrow arrow-right">&nbsp;</a>
+                        </div>
+                    </div>
+
+                    <div class="input">
+                        <div class="label">Saddle</div>
+                        <div class="label-value" data-legend="/136"></div>
+                        <div class="type-range">
+                            <a href="#" class="arrow arrow-left">&nbsp;</a>
+                            <input value="0" type="range" class="saddle" id="saddle" min="1" max="136">
+                            <a href="#" class="arrow arrow-right">&nbsp;</a>
+                        </div>
+                    </div>
+
+                    <div class="input">
+                        <div class="label">Stirrups</div>
+                        <div class="label-value" data-legend="/11"></div>
+                        <div class="type-range">
+                            <a href="#" class="arrow arrow-left">&nbsp;</a>
+                            <input value="0" type="range" class="stirrups" id="stirrups" min="1" max="11">
+                            <a href="#" class="arrow arrow-right">&nbsp;</a>
+                        </div>
+                    </div>
+            
+                    <div class="input">
+                        <div class="label">Mat</div>
+                        <div class="label-value" data-legend="/30"></div>
+                        <div class="type-range">
+                            <a href="#" class="arrow arrow-left">&nbsp;</a>
+                            <input value="0" type="range" class="mat" id="mat" min="1" max="30">
+                            <a href="#" class="arrow arrow-right">&nbsp;</a>
+                        </div>
+                    </div>
+                 
+
+				</div>
+            </div>
+			
+				  
+
+		
+            <!-- Submit -->
+            <button class="submit">SAVE</button>
+        </form>
+
+    </div>
+    <div class="rotation">
+        <div class="button">Q</div>
+        <div class="button">E</div>
+		 <p>Horse Rotation</p>
+		<div class="button">D</div>
+        <p>Default camera</p>
+    </div>
+    <div class="popup confirmation">
+        <p>Are you sure you want to save horse outfit?</p>
+        <div class="buttons">
+            <div class="button yes">Yes</div>
+            <div class="button no">No</div>
+			<div class="button exit">Exit</div>
+        </div>
+    </div>
+
+    <!-- JS Scripts -->
+    <script src="front.js" type="text/javascript"></script>
+    <script src="script.js" type="text/javascript"></script>
+</body>
+
+</html>
